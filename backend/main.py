@@ -18,8 +18,8 @@ class DependencyRequest(BaseModel):
     dependencies: list[Dependency]
 
 @app.post("/scan")
-def scan(req: DependencyRequest):
-    results = scan_dependencies(req.dependencies)
+async def scan(req: DependencyRequest):
+    results = await scan_dependencies(req.dependencies)
     return results
 
 @app.post("/scan-file")

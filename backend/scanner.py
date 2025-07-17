@@ -2,7 +2,7 @@ import httpx
 from typing import List, Dict
 from schemas import Dependency
 
-from cvss import CVSS4
+from cvss import CVSS4, CVSS3
 
 import asyncio
 
@@ -26,7 +26,7 @@ def parse_requirements_and_scan(text: str):
         if "==" in line and not line.strip().startswith("#"):
             name, version = line.strip().split("==")
             dependencies.append(Dependency(name=name, version=version))
-    return asyncio.run(scan_dependencies(dependencies))
+    return scan_dependencies(dependencies)
 
     
 async def fetch_cve_detail(vuln_id: str, client: httpx.AsyncClient) -> dict:
@@ -43,7 +43,6 @@ async def fetch_cve_detail(vuln_id: str, client: httpx.AsyncClient) -> dict:
         print(f"Erro ao buscar {vuln_id}: {e}")
 
     return {}
-
 
 async def scan_dependencies(dependencies: List[Dependency]):
     query_url = "https://api.osv.dev/v1/querybatch"
@@ -79,11 +78,19 @@ async def scan_dependencies(dependencies: List[Dependency]):
                 cvss_v4_vector = next(
                     (s.get("score") for s in severity if s.get("type") == "CVSS_V4"), None
                 )
+                
+                cvss_v3_vector = next(
+                    (s.get("score") for s in severity if s.get("type") == "CVSS_V3"), None
+                )
 
                 try:
                     if cvss_v4_vector:
                         cvss_obj = CVSS4(cvss_v4_vector)
-                        score = cvss_obj.scores()["base"]
+                        score = cvss_obj.scores()[0]
+                        level = classify_severity(score)
+                    elif cvss_v3_vector:
+                        cvss_obj = CVSS3(cvss_v3_vector)
+                        score = cvss_obj.scores()[0]
                         level = classify_severity(score)
                     else:
                         score = None
@@ -108,17 +115,3 @@ async def scan_dependencies(dependencies: List[Dependency]):
             })
 
         return results
-
-
-def parse_requirements_and_scan(requirements_text: str):
-    dependencies = []
-
-    for line in requirements_text.splitlines():
-        line = line.strip()
-        if not line or line.startswith("#"):
-            continue
-        if "==" in line:
-            name, version = line.split("==")
-            dependencies.append(Dependency(name=name.strip(), version=version.strip()))
-
-    return scan_dependencies(dependencies)
