@@ -69,7 +69,7 @@ function App() {
         {/* Upload e Botão */}
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg space-y-4">
           <label className="block">
-            <span className="text-sm text-gray-300">Envie as suas dependências | <code>Python, JavaScript e Java</code></span>
+            <span className="text-sm text-gray-300">Envie as suas dependências | <code>Python, JavaScript, PHP e Java</code></span>
             <input
               type="file"
               accept=".txt, .json, .xml"

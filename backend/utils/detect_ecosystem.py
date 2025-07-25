@@ -1,6 +1,7 @@
 from services.parsers.node_parser import parse_package_json
 from services.parsers.python_parser import parse_requirements
 from services.parsers.java_parser import parse_pom_xml
+from services.parsers.php_parser import parse_composer_json
 
 def detect_ecosystem(file_path, file):
   if file_path.endswith('requirements.txt'):
@@ -10,7 +11,7 @@ def detect_ecosystem(file_path, file):
   elif file_path.endswith('package.json'):
     return parse_package_json(file)
   elif file_path.endswith('composer.json'):
-    return 'php'
+    return parse_composer_json(file)
   elif file_path.endswith('gemfile'):
     return 'ruby'
   elif file_path.endswith('build.gradle'):
