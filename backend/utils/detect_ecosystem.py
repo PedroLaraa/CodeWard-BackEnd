@@ -3,6 +3,7 @@ from services.parsers.python_parser import parse_requirements
 from services.parsers.java_parser import parse_pom_xml
 from services.parsers.php_parser import parse_composer_json
 from services.parsers.ruby_parser import parse_gemfile
+from services.parsers.kotlin_parser import parse_build_gradle
 
 def detect_ecosystem(file_path, file):
   if file_path.endswith('requirements.txt'):
@@ -16,6 +17,6 @@ def detect_ecosystem(file_path, file):
   elif file_path.endswith('gemfile'):
     return parse_gemfile(file)
   elif file_path.endswith('build.gradle'):
-    return 'kotlin'
+    return parse_build_gradle(file)
   else:
     return 'Unknown'
