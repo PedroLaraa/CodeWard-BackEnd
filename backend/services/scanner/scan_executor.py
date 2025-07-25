@@ -10,7 +10,7 @@ async def scan_dependencies(dependencies: List[Dependency]):
     query_url = "https://api.osv.dev/v1/querybatch"
 
     queries = [
-        {"package": {"name": dep.name, "ecosystem": "PyPI"}, "version": dep.version}
+        {"package": {"name": dep.name, "ecosystem": dep.ecosystem}, "version": dep.version}
         for dep in dependencies
     ]
 

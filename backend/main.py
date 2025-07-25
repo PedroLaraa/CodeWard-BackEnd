@@ -2,7 +2,8 @@ from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
 from models.schemas import Dependency
 from services.scanner.scan_executor import scan_dependencies
-from services.scanner.requirements_parser import parse_requirements
+from services.parsers.python_parser import parse_requirements
+from utils.detect_ecosystem import detect_ecosystem
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -25,7 +26,5 @@ async def scan(req: DependencyRequest):
 
 @app.post("/scan-file")
 async def scan_file(file: UploadFile = File(...)):
-    content = await file.read()
-    text = content.decode("utf-8")
-    deps = parse_requirements(text)
-    return await scan_dependencies(deps)
+    technology = await detect_ecosystem(file.filename, file)
+    return await scan_dependencies(technology)
