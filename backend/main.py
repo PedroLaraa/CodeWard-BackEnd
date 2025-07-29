@@ -27,5 +27,4 @@ async def scan(req: DependencyRequest):
 @app.post("/scan-file")
 async def scan_file(file: UploadFile = File(...)):
     technology = await detect_ecosystem(file.filename.lower(), file)
-    print(technology)
     return await scan_dependencies(technology)

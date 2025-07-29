@@ -19,4 +19,4 @@ def detect_ecosystem(file_path, file):
   elif file_path.endswith('build.gradle'):
     return parse_build_gradle(file)
   else:
-    return 'Unknown'
+    return 'Ainda não temos suporte a esse tipo de arquivo.'

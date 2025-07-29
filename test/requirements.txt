@@ -1,5 +1,5 @@
 django==2.2.0
-# cryptography==2.7
-# pillow==6.1.0
-# flask-security==3.0.0
-# requests==2.22.0
+cryptography==2.7
+pillow==6.1.0
+flask-security==3.0.0
+requests==2.22.0
