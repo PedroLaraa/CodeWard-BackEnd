@@ -58,18 +58,23 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans pt-24 px-6 py-8">
+    <div className="font-jet min-h-screen bg-gray-900 text-white pt-24 px-6 py-8">
       <div className="max-w-5xl mx-auto space-y-8">
         <Navbar />
-        <div className="flex items-center space-x-3">
-
-          <h1 className="text-3xl font-bold text-purple-400">CodeWard</h1>
+        <div className="bg-gray-800 p-6 rounded-lg shadow-lg space-y-4">
+          <h3 className="text-2xl font-bold text-purple-400">Ecosistemas suportados:</h3>
+          <p>• Python | requirements.txt</p>
+          <p>• JavaScript | package.json</p>
+          <p>• PHP | composer.json</p>
+          <p>• Ruby | Gemfile</p>
+          <p>• Kotlin | build.gradle</p>
+          <p>• Java | pom.xml</p>
         </div>
 
         {/* Upload e Botão */}
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg space-y-4">
           <label className="block">
-            <span className="text-sm text-gray-300">Envie as suas dependências | <code>Python, JavaScript, PHP, Ruby, Kotlin e Java</code></span>
+            <span className="text-sm text-gray-300">Envie as suas dependências:</span>
             <input
               type="file"
               accept=".txt, .json, .xml, .gradle, Gemfile"
@@ -86,8 +91,8 @@ function App() {
           </button>
         </div>
         {/* Resultados */}
-        {results.length > 0 && (
-          <div className="space-y-6">
+        {results.length >= 0 && (
+          <div className="space-y-6 h-svh">
             <DashboardSummary results={results} />
 
             {results.map((res, i) => (
