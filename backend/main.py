@@ -19,7 +19,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://code-ward-nine.vercel.app/"],
+    allow_origins=["https://code-ward-nine.vercel.app", "https://code-ward-ecru.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
