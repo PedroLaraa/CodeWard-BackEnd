@@ -43,7 +43,7 @@ export const Dashboard = () => {
 
     try {
       const response = await axios.post<ScanResult[]>(
-        "http://127.0.0.1:8000/scan-file",
+        "https://codeward-backend-1.onrender.com/scan-file",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -92,7 +92,7 @@ export const Dashboard = () => {
         </div>
         {/* Resultados */}
         {results.length >= 0 && (
-          <div className="space-y-6 h-svh">
+          <div className="space-y-6">
             <DashboardSummary results={results} />
 
             {results.map((res, i) => (

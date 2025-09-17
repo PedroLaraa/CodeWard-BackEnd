@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className="bg-gray-900 bottom-0 left-0 w-full z-50 shadow-md border-b border-gray-700">
+    <footer className="bg-gray-900 w-full shadow-md border-t border-gray-700 mt-10">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="text-purple-500 font-bold">© CodeWard - Todos os direitos reservados.</div>
         <nav className="hidden md:flex space-x-6 text-white font-medium">
