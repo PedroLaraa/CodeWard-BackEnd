@@ -7,7 +7,7 @@ export const Navbar = () => {
         <nav className="hidden md:flex space-x-6 text-white font-medium">
         </nav>
         <a
-          href="/"
+          href="/dashboard"
           className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded font-semibold text-sm"
         >
           Comece agora
