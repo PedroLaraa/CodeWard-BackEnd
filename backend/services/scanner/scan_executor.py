@@ -1,10 +1,10 @@
 import asyncio
 import httpx
 from typing import List
-from models.schemas import Dependency
+from backend.models.schemas import Dependency
 from cvss import CVSS4, CVSS3
-from services.enrichers.cve_enricher import fetch_cve_detail
-from services.classifiers.severity_classifier import classify_severity
+from backend.services.enrichers.cve_enricher import fetch_cve_detail
+from backend.services.classifiers.severity_classifier import classify_severity
 
 async def scan_dependencies(dependencies: List[Dependency]):
     query_url = "https://api.osv.dev/v1/querybatch"

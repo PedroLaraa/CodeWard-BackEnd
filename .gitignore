@@ -310,3 +310,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+core/config.py
+backend/core/config.py

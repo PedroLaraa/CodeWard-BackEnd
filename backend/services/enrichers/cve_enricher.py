@@ -1,5 +1,5 @@
 import httpx
-from utils.caching import get_from_cache, save_to_cache
+from backend.utils.caching import get_from_cache, save_to_cache
 
 async def fetch_cve_detail(vuln_id: str, client: httpx.AsyncClient) -> dict:
     cached = get_from_cache(vuln_id)

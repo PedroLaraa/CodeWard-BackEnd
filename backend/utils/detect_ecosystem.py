@@ -1,9 +1,9 @@
-from services.parsers.node_parser import parse_package_json
-from services.parsers.python_parser import parse_requirements
-from services.parsers.java_parser import parse_pom_xml
-from services.parsers.php_parser import parse_composer_json
-from services.parsers.ruby_parser import parse_gemfile
-from services.parsers.kotlin_parser import parse_build_gradle
+from backend.services.parsers.node_parser import parse_package_json
+from backend.services.parsers.python_parser import parse_requirements
+from backend.services.parsers.java_parser import parse_pom_xml
+from backend.services.parsers.php_parser import parse_composer_json
+from backend.services.parsers.ruby_parser import parse_gemfile
+from backend.services.parsers.kotlin_parser import parse_build_gradle
 
 def detect_ecosystem(file_path, file):
   if file_path.endswith('requirements.txt'):

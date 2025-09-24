@@ -1,4 +1,4 @@
-from models.schemas import Dependency
+from backend.models.schemas import Dependency
 from typing import List
 import re
 

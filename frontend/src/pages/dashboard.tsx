@@ -42,8 +42,9 @@ export const Dashboard = () => {
     formData.append("file", file);
 
     try {
+      const url = import.meta.env.VITE_DEVELOPER_AMBIENT_REQUESTS
       const response = await axios.post<ScanResult[]>(
-        "https://codeward-backend-1.onrender.com/scan-file",
+        url,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
