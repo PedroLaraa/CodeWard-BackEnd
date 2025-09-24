@@ -1,7 +1,7 @@
 import re
 from typing import List, Dict
 from fastapi import UploadFile
-from models.schemas import Dependency
+from backend.models.schemas import Dependency
 
 async def parse_build_gradle(file: UploadFile) -> List[Dict[str, str]]:
     content = await file.read()

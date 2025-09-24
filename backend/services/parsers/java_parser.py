@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from typing import List, Dict
 from fastapi import UploadFile
-from models.schemas import Dependency
+from backend.models.schemas import Dependency
 
 async def parse_pom_xml(file: UploadFile) -> List[Dict[str, str]]:
     content = await file.read()

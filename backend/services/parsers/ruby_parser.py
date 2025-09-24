@@ -1,7 +1,7 @@
 import re
 from typing import List, Dict
 from fastapi import UploadFile
-from models.schemas import Dependency
+from backend.models.schemas import Dependency
 
 def clean_version(version_str: str) -> str:
     return re.sub(r"^[^\d]*", "", version_str)

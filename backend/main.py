@@ -1,9 +1,9 @@
 from fastapi import FastAPI, UploadFile, File
 from pydantic import BaseModel
-from models.schemas import Dependency
-from services.scanner.scan_executor import scan_dependencies
-from services.parsers.python_parser import parse_requirements
-from utils.detect_ecosystem import detect_ecosystem
+from backend.models.schemas import Dependency
+from backend.services.scanner.scan_executor import scan_dependencies
+from backend.utils.detect_ecosystem import detect_ecosystem
+from backend.api import auth
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -11,15 +11,16 @@ import os
 import uvicorn
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))  # Render fornece a PORT
+    port = int(os.environ.get("PORT", 8000))
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
 
 
 app = FastAPI()
+app.include_router(auth.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://code-ward-nine.vercel.app", "https://code-ward-ecru.vercel.app"],
+    allow_origins=["https://code-ward-nine.vercel.app", "https://code-ward-ecru.vercel.app", "localhost"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -30,6 +31,7 @@ class DependencyRequest(BaseModel):
 
 @app.post("/scan")
 async def scan(req: DependencyRequest):
+  
     return await scan_dependencies(req.dependencies)
 
 @app.post("/scan-file")
