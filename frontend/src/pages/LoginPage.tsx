@@ -15,12 +15,12 @@ export const LoginPage = () => {
     <div className="flex min-h-screen items-center justify-center bg-gray-950 p-4">
       <div className="w-full max-w-md rounded-2xl bg-gray-900 p-8 shadow-xl">
         <h1 className="mb-6 text-center text-2xl font-bold text-white">
-          CodeWard Login
+          Login
         </h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <label htmlFor="email" className="text-sm text-gray-300">
-              Email
+              E-mail
             </label>
             <input
               id="email"
@@ -60,3 +60,5 @@ export const LoginPage = () => {
     </div>
   );
 }
+
+export default LoginPage;

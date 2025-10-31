@@ -20,7 +20,7 @@ app.include_router(auth.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://code-ward-nine.vercel.app/", "localhost"],
+    allow_origins=["https://code-ward-nine.vercel.app/", "http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
